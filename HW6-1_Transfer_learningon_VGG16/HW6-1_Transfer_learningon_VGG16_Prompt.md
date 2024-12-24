@@ -4,15 +4,19 @@ step 1: build VGG-16 pretrained model (tf.keras), following crisp-dm steps.
 step 2: modify the code to use medical-mask github for training (modify 2 class).  
 step 3: allow program to input image URL(http), then classify which class it is.
 
- \# Example usage  
+ \# Example usage: 
+```
 image_url =input("https://na.cx/i/eqzQJYw.jpg")  
 test_image(image_url, model, train_dataset.classes)  
-
+```
  \# Download dataset "medical mask" from github:  
-  Use "!git clone https://github.com/chandrikadeb7/Face-Mask-Detection.git"  
+```
+!git clone https://github.com/chandrikadeb7/Face-Mask-Detection.git
+```
  \# Install necessary packages:  
-  Use "!pip install tensorflow pillow requests"
-
+```
+!pip install tensorflow pillow requests
+```
 ## Response:
 Here is a comprehensive step-by-step implementation of transfer learning with a pretrained VGG-16 model using TensorFlow, designed for Colab. It includes instructions for training the model on the "medical-mask" dataset and enabling classification from an image URL.
 
