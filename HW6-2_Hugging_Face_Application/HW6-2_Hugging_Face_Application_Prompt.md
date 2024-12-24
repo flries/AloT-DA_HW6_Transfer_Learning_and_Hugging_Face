@@ -1,18 +1,19 @@
 ## Prompt:
-Build a AI application using Hugging Face on Colab: 
-step 1: install necessary packages 'transformers' using code: "!pip install transformers[sentencepiece]".
-step 2: select a pretrained model in Hugging Face , following crisp-dm steps.
-step 3: modify the code to use Rock-Paper-Scissors github for training.
-step 4: download dataset "Rock-Paper-Scissors" from github using code:
-"!mkdir tmp
-!wget --no-check-certificate \
-    https://storage.googleapis.com/learning-datasets/rps.zip \
-    -O ./tmp/rps.zip
-
-!wget --no-check-certificate \
-    https://storage.googleapis.com/learning-datasets/rps-test-set.zip \
+Build a AI application using Hugging Face on Colab:  
+step 1: install necessary packages 'transformers' using code: "!pip install transformers[sentencepiece]".  
+step 2: select a pretrained model in Hugging Face , following crisp-dm steps.  
+step 3: modify the code to use Rock-Paper-Scissors github for training.  
+step 4: download dataset "Rock-Paper-Scissors" from github using code:  
+```
+"!mkdir tmp  
+!wget --no-check-certificate \  
+    https://storage.googleapis.com/learning-datasets/rps.zip \  
+    -O ./tmp/rps.zip  
+  
+!wget --no-check-certificate \  
+    https://storage.googleapis.com/learning-datasets/rps-test-set.zip \  
     -O ./tmp/rps-test-set.zip"
-
+```
 ## Response:
 Below is a step-by-step guide to building an AI application using Hugging Face on Google Colab, with Rock-Paper-Scissors data for training.
 
@@ -159,21 +160,6 @@ trainer.train()
 Let me know if you'd like more detailed guidance on specific steps!
 
 ## Prompt:
----------------------------------------------------------------------------
-ValueError                                Traceback (most recent call last)
-<ipython-input-5-19cdfeb45d99> in <cell line: 35>()
-     33 
-     34 # Train model
----> 35 trainer.train()
-
-8 frames
-/usr/local/lib/python3.10/dist-packages/transformers/data/data_collator.py in torch_default_data_collator(features)
-    139         label = first["label"].item() if isinstance(first["label"], torch.Tensor) else first["label"]
-    140         dtype = torch.long if isinstance(label, int) else torch.float
---> 141         batch["labels"] = torch.tensor([f["label"] for f in features], dtype=dtype)
-    142     elif "label_ids" in first and first["label_ids"] is not None:
-    143         if isinstance(first["label_ids"], torch.Tensor):
-
 ValueError: too many dimensions 'str'
 
 ## Response:
@@ -333,23 +319,6 @@ trainer.train()
 You can now use this block to fine-tune your Hugging Face model with the Rock-Paper-Scissors dataset. Let me know if you have further questions!
 
 ## Prompt:
----------------------------------------------------------------------------
-ValueError                                Traceback (most recent call last)
-<ipython-input-7-2d6762399633> in <cell line: 33>()
-     31     return tokenizer(example["label"], padding="max_length", truncation=True)
-     32 
----> 33 train_dataset = train_dataset.map(tokenize_function, batched=True)
-     34 test_dataset = test_dataset.map(tokenize_function, batched=True)
-     35 
-
-6 frames
-/usr/local/lib/python3.10/dist-packages/transformers/tokenization_utils_base.py in _call_one(self, text, text_pair, add_special_tokens, padding, truncation, max_length, stride, is_split_into_words, pad_to_multiple_of, padding_side, return_tensors, return_token_type_ids, return_attention_mask, return_overflowing_tokens, return_special_tokens_mask, return_offsets_mapping, return_length, verbose, split_special_tokens, **kwargs)
-   2918 
-   2919         if not _is_valid_text_input(text):
--> 2920             raise ValueError(
-   2921                 "text input must be of type str (single example), List[str] (batch or single pretokenized example) "
-   2922                 "or List[List[str]] (batch of pretokenized examples)."
-
 ValueError: text input must be of type str (single example), List[str] (batch or single pretokenized example) or List[List[str]] (batch of pretokenized examples)
 
 ## Response:
@@ -467,23 +436,6 @@ trainer.train()
 This should resolve the `ValueError` and allow the training process to proceed successfully. Let me know if you need further assistance!
 
 ## Prompt:
----------------------------------------------------------------------------
-TypeError                                 Traceback (most recent call last)
-<ipython-input-8-25760b60bdd3> in <cell line: 46>()
-     44     return tokenizer(text_label, padding="max_length", truncation=True)
-     45 
----> 46 train_dataset = train_dataset.map(tokenize_function, batched=True)
-     47 test_dataset = test_dataset.map(tokenize_function, batched=True)
-     48 
-
-4 frames
-<ipython-input-8-25760b60bdd3> in tokenize_function(example)
-     41 def tokenize_function(example):
-     42     # Use the textual representation of the labels for tokenization
----> 43     text_label = list(label_mapping.keys())[example["label"]]
-     44     return tokenizer(text_label, padding="max_length", truncation=True)
-     45 
-
 TypeError: list indices must be integers or slices, not list
 
 ## Response:
@@ -593,8 +545,3 @@ trainer.train()
 * * *
 
 This should resolve the `TypeError` and allow the training process to proceed successfully. Let me know if you encounter further issues!
-
-
-
----
-Powered by [ChatGPT Exporter](https://www.chatgptexporter.com)
